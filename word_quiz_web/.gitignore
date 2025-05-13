@@ -1,0 +1,38 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg
+*.egg-info/
+dist/
+build/
+env/
+venv/
+*.log
+
+# VSCode 등 IDE 설정파일
+.vscode/
+*.code-workspace
+
+# macOS / Windows 자동 생성 파일
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# HTML 에디터 임시파일
+*.swp
+*.tmp
+*.bak
+
+# 환경변수 파일 (보안)
+.env
+
+# 기타 임시 파일
+*.zip
+*.rar
+*.7z
+
+# Node.js (혹시 PWA 쓸 경우 대비)
+node_modules/
+
+# 텍스트 파일 무시
+*.txt
