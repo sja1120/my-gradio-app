@@ -1,43 +1,26 @@
-# 파이썬 캐시/빌드 파일
 __pycache__/
 *.py[cod]
 *.egg-info/
 dist/
 build/
-
-# 가상환경
 env/
 venv/
-
-# 로그 파일
 *.log
-
-# IDE 설정 파일
 .vscode/
 *.code-workspace
-
-# 운영체제 자동 생성 파일
 .DS_Store
 desktop.ini
 Thumbs.db
-
-# 임시파일
 *.tmp
 *.bak
 *.swp
 *.zip
 *.rar
 *.7z
-
-# 보안 관련 환경 변수
 .env
-
-# 텍스트/한글/PDF 등 문서 파일
 *.txt
 *.pdf
 *.hwpx
 *.pptx
 *.lnk
-
-# Node.js
 node_modules/
