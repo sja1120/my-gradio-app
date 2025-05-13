@@ -1,38 +1,43 @@
-# Python
+# 파이썬 캐시/빌드 파일
 __pycache__/
 *.py[cod]
-*.egg
 *.egg-info/
 dist/
 build/
+
+# 가상환경
 env/
 venv/
+
+# 로그 파일
 *.log
 
-# VSCode 등 IDE 설정파일
+# IDE 설정 파일
 .vscode/
 *.code-workspace
 
-# macOS / Windows 자동 생성 파일
+# 운영체제 자동 생성 파일
 .DS_Store
-Thumbs.db
 desktop.ini
+Thumbs.db
 
-# HTML 에디터 임시파일
-*.swp
+# 임시파일
 *.tmp
 *.bak
-
-# 환경변수 파일 (보안)
-.env
-
-# 기타 임시 파일
+*.swp
 *.zip
 *.rar
 *.7z
 
-# Node.js (혹시 PWA 쓸 경우 대비)
-node_modules/
+# 보안 관련 환경 변수
+.env
 
-# 텍스트 파일 무시
+# 텍스트/한글/PDF 등 문서 파일
 *.txt
+*.pdf
+*.hwpx
+*.pptx
+*.lnk
+
+# Node.js
+node_modules/
