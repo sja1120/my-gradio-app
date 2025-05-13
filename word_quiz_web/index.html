@@ -1,39 +1,12 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>단어 퀴즈</title>
-    <link rel="manifest" href="/static/manifest.json">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Word Quiz</title>
 </head>
 <body>
-    <h1>단어 퀴즈</h1>
-    <p id="word">퀴즈를 시작하려면 "시작"을 클릭하세요!</p>
-    <button onclick="startQuiz()">시작</button>
-
-    <script>
-        // 기존 자바스크립트 코드
-        function startQuiz() {
-            fetch('/quiz')
-                .then(response => response.json())
-                .then(data => {
-                    document.getElementById("word").textContent = data.word;
-                    // 여기에 추가 로직을 넣어 단어를 맞추는 방식으로 확장할 수 있어
-                });
-        }
-
-        // 서비스 워커 등록 코드 추가
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/service-worker.js')
-                    .then(registration => {
-                        console.log('서비스 워커 등록 성공: ', registration);
-                    })
-                    .catch(error => {
-                        console.log('서비스 워커 등록 실패: ', error);
-                    });
-            });
-        }
-    </script>
+  <h1>영단어 퀴즈</h1>
+  <p>웹 앱이 성공적으로 열렸습니다!</p>
 </body>
 </html>
