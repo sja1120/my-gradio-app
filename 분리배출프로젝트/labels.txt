@@ -1,0 +1,9 @@
+can
+clothes
+food
+glass
+metal
+paper
+plastic
+styrofoam
+vinyl

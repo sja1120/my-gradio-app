@@ -1,0 +1,17 @@
+원본 번역
+
+서론
+
+AI is positioned as a tool to solve various problems in modern society. It provides great help to humans by making quick and efficient judgments in many fields such as language translation, image creation, and medical diagnosis. However, in order for this technology to operate fairly and accurately, the data and algorithms contained within it must reflect the diverse perspectives of society. Otherwise, AI can become a dangerous tool that excludes certain groups or even causes discrimination, and AI lacking diversity can lead to social and ethical issues beyond simple technical limitations. This risk is currently being confirmed, so we will explore it in detail through actual cases.
+
+본론1
+
+A representative example of AI bias is a case that deals with historical issues. When asked about the comfort women issue during the Japanese colonial period, an AI chatbot provided the incorrect explanation that it was voluntary labor. This response cannot be dismissed as a simple information error, but rather reveals considerable seriousness. The comfort women issue is a historical fact that has been dealt with for a long time in Korean society based on the voices and truth of the victims, and any description that denies or downplays this can be secondary harm to the victims. The reason AI provided such information is that data centered on Japan or the West was mainly used for learning. AI created without such diverse perspectives runs the risk of presenting only the perspectives of a specific group as correct.
+
+본론2
+
+Another example of AI bias is the issue of stereotypes such as gender and race. When AI had the function of generating human appearances or images, it also reinforced stereotypes based on gender and race. For example, when ‘CEO’ was entered, images of Western men were repeatedly generated, and ‘nurse’ or ‘social worker’ were automatically linked to women or certain races. These results occurred because AI directly reflected the prejudices of existing society, and users may misunderstand this as objective judgment. If such bias accumulates, people’s perception of certain jobs and social expectations may follow the biases of AI. Ultimately, when AI fails to reflect diversity, technology works in a way that reinforces social imbalance.
+
+결론
+
+The above cases are not simply a matter of errors. AI operates through learning within a structure of data and algorithms. However, if the data used for this learning is biased, or if people from diverse backgrounds do not participate in the algorithm development process, the results will also be unbalanced. Technology is not neutral, and the results will vary depending on the perspective of the person who designs and uses it. Diversity in AI is a very important social issue, and we all need to take more thorough responsibility for the development and use of AI.
