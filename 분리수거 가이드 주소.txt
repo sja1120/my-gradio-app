@@ -1,0 +1,2 @@
+* Running on local URL:  http://127.0.0.1:7860
+* Running on public URL: https://45a04465b00a9c242e.gradio.live
