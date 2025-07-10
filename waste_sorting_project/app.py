@@ -3,7 +3,6 @@ import pandas as pd
 import difflib
 import os
 
-# CSV 파일 불러오기
 df = pd.read_csv("trash_data_extended.csv")
 
 def classify_text(user_input):
@@ -11,12 +10,10 @@ def classify_text(user_input):
     items = df['item'].tolist()
     tips = df['tips'].tolist()
 
-    # item, tips에 입력값이 포함된 품목 찾기
     item_matches = [item for item in items if user_input in item]
     tip_matches = [items[i] for i, tip in enumerate(tips) if user_input in str(tip)]
     combined_matches = list(dict.fromkeys(item_matches + tip_matches))
 
-    # 오타 보정: item, tips 모두에서 유사 품목 추천
     close_item_matches = difflib.get_close_matches(user_input, items, n=5, cutoff=0.5)
     close_tip_matches = [items[i] for i, tip in enumerate(tips)
                          if difflib.SequenceMatcher(None, user_input, str(tip)).ratio() > 0.5]
@@ -80,5 +77,7 @@ with gr.Blocks(title="분리배출 AI 가이드") as demo:
         )
 
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 10000))
-    demo.launch(server_name="0.0.0.0", server_port=port)
+    demo.launch(
+        server_name="0.0.0.0",
+        server_port=int(os.environ.get("PORT", 10000))  # Render에서 동적 포트 감지
+    )
