@@ -1,11 +1,11 @@
 import gradio as gr
 import pandas as pd
 import difflib
+import os
 
-# 데이터 불러오기
+# CSV 파일 불러오기
 df = pd.read_csv("trash_data_extended.csv")
 
-# 텍스트 입력에 따라 분리배출 정보 분류
 def classify_text(user_input):
     user_input = user_input.strip()
     items = df['item'].tolist()
@@ -16,7 +16,7 @@ def classify_text(user_input):
     tip_matches = [items[i] for i, tip in enumerate(tips) if user_input in str(tip)]
     combined_matches = list(dict.fromkeys(item_matches + tip_matches))
 
-    # 오타보정: item, tips 모두에서 유사 품목 추천
+    # 오타 보정: item, tips 모두에서 유사 품목 추천
     close_item_matches = difflib.get_close_matches(user_input, items, n=5, cutoff=0.5)
     close_tip_matches = [items[i] for i, tip in enumerate(tips)
                          if difflib.SequenceMatcher(None, user_input, str(tip)).ratio() > 0.5]
@@ -36,7 +36,6 @@ def classify_text(user_input):
             return main_result, suggestions
     return "❗ 해당 품목은 데이터에 없어요. 다른 걸 입력해보세요.", []
 
-# Gradio 인터페이스 생성
 with gr.Blocks(title="분리배출 AI 가이드") as demo:
     gr.Markdown("### ♻️ 분리배출 AI 가이드\n텍스트 입력만으로 분리배출 정보를 안내해줍니다.")
 
@@ -50,7 +49,9 @@ with gr.Blocks(title="분리배출 AI 가이드") as demo:
     def update_suggestions(user_input):
         result, suggestions = classify_text(user_input)
         padded_suggestions = suggestions + [""] * (5 - len(suggestions))
-        btn_updates = [gr.update(value=s, visible=bool(s)) for s in padded_suggestions]
+        btn_updates = []
+        for i, s in enumerate(padded_suggestions):
+            btn_updates.append(gr.update(value=s, visible=bool(s)))
         return [result] + btn_updates + [suggestions]
 
     text_input.change(
@@ -63,7 +64,9 @@ with gr.Blocks(title="분리배출 AI 가이드") as demo:
         if suggestion:
             result, suggestions = classify_text(suggestion)
             padded_suggestions = suggestions + [""] * (5 - len(suggestions))
-            btn_updates = [gr.update(value=s, visible=bool(s)) for s in padded_suggestions]
+            btn_updates = []
+            for i, s in enumerate(padded_suggestions):
+                btn_updates.append(gr.update(value=s, visible=bool(s)))
             return [suggestion, result] + btn_updates + [suggestions]
         else:
             btn_updates = [gr.update(visible=False) for _ in range(5)]
@@ -76,8 +79,6 @@ with gr.Blocks(title="분리배출 AI 가이드") as demo:
             outputs=[text_input, text_output] + suggestion_buttons + [suggestion_state]
         )
 
-# Render에서 외부 접속 가능하게 설정
-demo.launch(
-    server_name="0.0.0.0",
-    server_port=10000
-)
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 8080))  # Render 환경변수 PORT 사용, 없으면 8080 기본값
+    demo.launch(server_name="0.0.0.0", server_port=port)
