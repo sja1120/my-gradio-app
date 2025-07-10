@@ -2,25 +2,24 @@ import gradio as gr
 import pandas as pd
 import difflib
 
-# CSV 파일 불러오기
+# 데이터 불러오기
 df = pd.read_csv("trash_data_extended.csv")
 
+# 텍스트 입력에 따라 분리배출 정보 분류
 def classify_text(user_input):
     user_input = user_input.strip()
     items = df['item'].tolist()
     tips = df['tips'].tolist()
 
-    # 입력값이 item 또는 tips에 포함된 경우
+    # item, tips에 입력값이 포함된 품목 찾기
     item_matches = [item for item in items if user_input in item]
     tip_matches = [items[i] for i, tip in enumerate(tips) if user_input in str(tip)]
     combined_matches = list(dict.fromkeys(item_matches + tip_matches))
 
-    # 오타 보정: 유사도 기반 검색
+    # 오타보정: item, tips 모두에서 유사 품목 추천
     close_item_matches = difflib.get_close_matches(user_input, items, n=5, cutoff=0.5)
-    close_tip_matches = [
-        items[i] for i, tip in enumerate(tips)
-        if difflib.SequenceMatcher(None, user_input, str(tip)).ratio() > 0.5
-    ]
+    close_tip_matches = [items[i] for i, tip in enumerate(tips)
+                         if difflib.SequenceMatcher(None, user_input, str(tip)).ratio() > 0.5]
     close_combined = list(dict.fromkeys(close_item_matches + close_tip_matches))
 
     candidates = combined_matches or close_combined
@@ -35,10 +34,9 @@ def classify_text(user_input):
             suggestions = candidates[1:]
             main_result = f"♻️ 분리배출 유형: {trash_type}\n✅ 분류: {category}\n💡 팁: {tips_val}"
             return main_result, suggestions
-
     return "❗ 해당 품목은 데이터에 없어요. 다른 걸 입력해보세요.", []
 
-# Gradio 인터페이스 구성
+# Gradio 인터페이스 생성
 with gr.Blocks(title="분리배출 AI 가이드") as demo:
     gr.Markdown("### ♻️ 분리배출 AI 가이드\n텍스트 입력만으로 분리배출 정보를 안내해줍니다.")
 
@@ -78,5 +76,8 @@ with gr.Blocks(title="분리배출 AI 가이드") as demo:
             outputs=[text_input, text_output] + suggestion_buttons + [suggestion_state]
         )
 
-# ✅ Render 호환을 위한 수정된 launch 설정
-demo.launch(server_name="0.0.0.0", server_port=8080)
+# Render에서 외부 접속 가능하게 설정
+demo.launch(
+    server_name="0.0.0.0",
+    server_port=10000
+)
