@@ -80,5 +80,5 @@ with gr.Blocks(title="분리배출 AI 가이드") as demo:
         )
 
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 8080))  # Render 환경변수 PORT 사용, 없으면 8080 기본값
+    port = int(os.environ.get("PORT", 10000))
     demo.launch(server_name="0.0.0.0", server_port=port)
